@@ -319,11 +319,11 @@
             
             <div class="relative mb-10 group">
                 <div class="absolute inset-x-0 bottom-0 h-[2px] bg-white/10 group-focus-within:bg-primary-container transition-colors duration-500 shadow-[0_0_10px_rgba(255,0,0,0)] group-focus-within:shadow-[0_0_15px_rgba(255,0,0,0.5)]"></div>
-                <input class="w-full bg-transparent border-none py-4 px-2 font-label-caps text-[12px] text-white focus:outline-none focus:ring-0 transition-all placeholder:text-white/20 tracking-widest" placeholder="ENTER ZIP / COORDS" type="text"/>
-                <button class="absolute right-2 bottom-4 text-white/40 group-focus-within:text-primary-container material-symbols-outlined hover:text-white transition-colors">near_me</button>
+                <input id="location-input" class="w-full bg-transparent border-none py-4 px-2 font-label-caps text-[12px] text-white focus:outline-none focus:ring-0 transition-all placeholder:text-white/20 tracking-widest" placeholder="ENTER ZIP / COORDS" type="text"/>
+                <button id="location-btn" class="absolute right-2 bottom-4 text-white/40 group-focus-within:text-primary-container material-symbols-outlined hover:text-white transition-colors">near_me</button>
             </div>
             
-            <div class="space-y-4">
+            <div id="location-results" class="space-y-4">
                 <div class="flex justify-between items-center p-5 premium-glass hover:border-primary-container/30 transition-all cursor-pointer group hover:bg-white/[0.03]">
                     <div class="flex items-center gap-4">
                         <div class="w-2 h-2 rounded-full bg-white/20 group-hover:bg-primary-container transition-colors group-hover:shadow-[0_0_10px_#ff0000]"></div>
@@ -345,15 +345,17 @@
             <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
             
             <!-- Map Nodes -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div class="w-4 h-4 md:w-6 md:h-6 bg-primary-container rounded-full animate-pulse shadow-[0_0_25px_#ff0000]"></div>
-                <div class="absolute inset-0 rounded-full border border-primary-container animate-ping opacity-50"></div>
-            </div>
-            <div class="absolute top-1/3 left-1/4">
-                <div class="w-2 h-2 md:w-3 md:h-3 bg-white/50 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
-            </div>
-            <div class="absolute bottom-1/4 right-1/3">
-                <div class="w-2 h-2 md:w-3 md:h-3 bg-white/50 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+            <div id="map-nodes-container">
+                <div id="main-map-node" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-1000 ease-in-out">
+                    <div class="w-4 h-4 md:w-6 md:h-6 bg-primary-container rounded-full animate-pulse shadow-[0_0_25px_#ff0000]"></div>
+                    <div class="absolute inset-0 rounded-full border border-primary-container animate-ping opacity-50"></div>
+                </div>
+                <div class="absolute top-1/3 left-1/4">
+                    <div class="w-2 h-2 md:w-3 md:h-3 bg-white/50 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+                </div>
+                <div class="absolute bottom-1/4 right-1/3">
+                    <div class="w-2 h-2 md:w-3 md:h-3 bg-white/50 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+                </div>
             </div>
         </div>
     </div>

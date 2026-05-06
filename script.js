@@ -115,3 +115,73 @@ function createParticle() {
 
 // Generate particles periodically
 setInterval(createParticle, 150);
+
+// Sector Map Logic
+const locationInput = document.getElementById('location-input');
+const locationBtn = document.getElementById('location-btn');
+const locationResults = document.getElementById('location-results');
+const mainMapNode = document.getElementById('main-map-node');
+
+const dummyNodes = [
+    { name: "CYBER-MART SECTOR 4", dist: "0.2 MI", top: "40%", left: "30%" },
+    { name: "NEON FUEL STATION", dist: "0.8 MI", top: "60%", left: "70%" },
+    { name: "GRIDRUNNER OUTPOST", dist: "1.5 MI", top: "20%", left: "80%" },
+    { name: "STING REPLENISH HUB", dist: "2.1 MI", top: "70%", left: "20%" },
+    { name: "NIGHT CITY VEND", dist: "3.4 MI", top: "50%", left: "50%" }
+];
+
+const performSearch = () => {
+    const val = locationInput.value.trim();
+    if (!val) return;
+    
+    // Simulate loading
+    locationBtn.innerHTML = 'refresh';
+    locationBtn.classList.add('animate-spin');
+    locationResults.innerHTML = '<div class="text-center py-8 text-primary-container font-label-caps tracking-widest text-[11px] animate-pulse">SCANNING GRID...</div>';
+    
+    setTimeout(() => {
+        // Generate 2-3 random results
+        const resultCount = Math.floor(Math.random() * 2) + 2;
+        const shuffled = [...dummyNodes].sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, resultCount);
+        
+        // Update Results List
+        locationResults.innerHTML = selected.map(node => `
+            <div class="flex justify-between items-center p-5 premium-glass hover:border-primary-container/30 transition-all cursor-pointer group hover:bg-white/[0.03]" onclick="moveNode('${node.top}', '${node.left}')">
+                <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-white/20 group-hover:bg-primary-container transition-colors group-hover:shadow-[0_0_10px_#ff0000]"></div>
+                    <span class="font-label-caps text-[11px] text-white group-hover:text-primary-container transition-colors tracking-widest font-bold">${node.name}</span>
+                </div>
+                <span class="text-[12px] font-label-caps text-on-surface-variant tracking-widest">${node.dist}</span>
+            </div>
+        `).join('');
+        
+        // Reset button
+        locationBtn.classList.remove('animate-spin');
+        locationBtn.innerHTML = 'near_me';
+        
+        // Move main map node to the first result
+        if (selected.length > 0) {
+            moveNode(selected[0].top, selected[0].left);
+        }
+        
+    }, 1200);
+};
+
+window.moveNode = (top, left) => {
+    if (mainMapNode) {
+        mainMapNode.style.top = top;
+        mainMapNode.style.left = left;
+        // Add ping effect by re-triggering class
+        mainMapNode.classList.remove('animate-pulse');
+        void mainMapNode.offsetWidth; // trigger reflow
+        mainMapNode.classList.add('animate-pulse');
+    }
+};
+
+if (locationBtn && locationInput) {
+    locationBtn.addEventListener('click', performSearch);
+    locationInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+}
