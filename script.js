@@ -82,7 +82,7 @@ window.addEventListener('scroll', () => {
 
 // Smooth Lerp Loop
 const loop = () => {
-    currentFrameIndex += (targetFrameIndex - currentFrameIndex) * 0.08; // 0.08 is the easing factor
+    currentFrameIndex += (targetFrameIndex - currentFrameIndex) * 0.15; // 0.15 makes it snappier
     updateImage(Math.round(currentFrameIndex));
     requestAnimationFrame(loop);
 }
