@@ -33,6 +33,7 @@ let currentFrameIndex = 0;
 const heroSection = document.getElementById("hero-scroll-section");
 const heroText = document.getElementById("hero-text");
 const navbar = document.getElementById("main-nav");
+const scrollIndicator = document.getElementById("scroll-indicator");
 
 const updateImage = index => {
     if (images[index] && images[index].complete) {
@@ -59,15 +60,19 @@ window.addEventListener('scroll', () => {
     // Update target frame
     targetFrameIndex = Math.floor(scrollFraction * (frameCount - 1));
     
-    // Text animation (blur out after 30% scroll)
-    if (scrollFraction > 0.3) {
-        heroText.style.opacity = '0';
-        heroText.style.filter = 'blur(10px)';
-        heroText.style.transform = 'translateY(-10px)';
-    } else {
-        heroText.style.opacity = '1';
-        heroText.style.filter = 'blur(0px)';
-        heroText.style.transform = 'translateY(0)';
+    // Smooth, continuous Text & Indicator animation (Fade completely out by 30% scroll)
+    const textFadeLimit = 0.3;
+    const fadeFraction = Math.max(0, 1 - (scrollFraction / textFadeLimit));
+    
+    // Apply dynamic inline styles
+    heroText.style.opacity = fadeFraction;
+    heroText.style.filter = `blur(${(1 - fadeFraction) * 20}px)`;
+    heroText.style.transform = `translateY(-${(1 - fadeFraction) * 40}px)`;
+    
+    if (scrollIndicator) {
+        scrollIndicator.style.opacity = fadeFraction * 0.7; // Base opacity was 0.7
+        scrollIndicator.style.filter = `blur(${(1 - fadeFraction) * 10}px)`;
+        scrollIndicator.style.transform = `translate(-50%, ${(1 - fadeFraction) * 20}px)`;
     }
     
     // Navbar glass effect gets stronger on scroll
