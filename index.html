@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>STING ENERGY | UNLEASH THE SURGE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#e60000",
+                        "surface": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#e9bcb5",
+                        "outline-variant": "#5f3f3a",
+                    },
+                    spacing: {
+                        "margin-edge": "64px",
+                        "container-max": "1440px"
+                    },
+                    fontFamily: {
+                        "h1-display": ["Space Grotesk"],
+                        "h2-headline": ["Space Grotesk"],
+                        "h3-subhead": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Space Grotesk"]
+                    },
+                    fontSize: {
+                        "h1-display": ["84px", {"lineHeight": "100%", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "h2-headline": ["48px", {"lineHeight": "110%", "fontWeight": "700"}],
+                        "h3-subhead": ["24px", {"lineHeight": "120%", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "150%", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "160%", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "100%", "letterSpacing": "0.2em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md overflow-x-hidden">
+
+<!-- Hyper-Glassy Navbar -->
+<nav id="main-nav" class="fixed top-0 w-full z-50 bg-white/[0.02] backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(230,0,0,0.05)] transition-all duration-500 hover:bg-black/40">
+    <div class="flex justify-between items-center w-full px-4 md:px-margin-edge py-3 md:py-4 max-w-container-max mx-auto relative">
+        <div class="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-30"></div>
+        <div class="font-h2-headline text-xl sm:text-2xl md:text-3xl font-black tracking-tighter text-white drop-shadow-[0_0_8px_#E60000] cursor-pointer">
+            STING<span class="text-primary-container">.</span>
+        </div>
+        <div class="hidden lg:flex items-center space-x-10 font-label-caps text-[11px] uppercase tracking-widest bg-white/5 px-8 py-3 rounded-full border border-white/10">
+            <a class="text-white hover:text-primary-container hover:drop-shadow-[0_0_10px_#E60000] transition-all duration-300" href="#specs">Specs</a>
+            <a class="text-white/70 hover:text-primary-container hover:drop-shadow-[0_0_10px_#E60000] transition-all duration-300" href="#formula">Formula</a>
+            <a class="text-white/70 hover:text-primary-container hover:drop-shadow-[0_0_10px_#E60000] transition-all duration-300" href="#lifestyle">Pro Series</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button class="clip-path-button bg-primary-container px-6 py-2 md:px-8 md:py-3 font-label-caps text-[10px] md:text-[12px] text-white hover:bg-red-600 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(230,0,0,0.4)] hover:shadow-[0_0_25px_rgba(230,0,0,0.8)]">BUY NOW</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Sticky Cinematic Hero Section -->
+<section id="hero-scroll-section" class="relative w-full bg-[#030303] h-[500vh]">
+    <div class="sticky top-0 w-full h-screen overflow-hidden bg-[#030303] flex items-center justify-center">
+        <!-- 3D Perspective Grid Floor -->
+        <div class="absolute bottom-0 inset-x-0 h-[50vh] bg-[linear-gradient(transparent_95%,rgba(230,0,0,0.15)_100%),linear-gradient(90deg,transparent_95%,rgba(230,0,0,0.15)_100%)] bg-[length:50px_50px] [transform:perspective(1000px)_rotateX(80deg)] [transform-origin:bottom] opacity-40 z-0"></div>
+        
+        <!-- Deep Red Gradients & Smoke Atmosphere -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(80,0,0,0.4)_0%,_transparent_70%)] z-0"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-screen z-0 pointer-events-none"></div>
+        
+        <!-- Canvas for Image Sequence -->
+        <!-- On mobile, pushed down slightly. On desktop, standard placement. -->
+        <canvas id="hero-canvas" class="relative z-10 w-full h-full object-contain md:object-cover mix-blend-lighten scale-[1.3] md:scale-[1.1] translate-y-[15%] md:translate-y-0 md:translate-x-12"></canvas>
+        
+        <!-- Cinematic Overlays & Scanlines -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303] z-20 pointer-events-none"></div>
+        <div class="absolute inset-0 shadow-[inset_0_0_200px_rgba(230,0,0,0.1)] z-20 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.1)_2px,rgba(0,0,0,0.1)_4px)] pointer-events-none z-20 opacity-50"></div>
+
+        <!-- Particles Container -->
+        <div id="particles-container" class="absolute inset-0 z-20 pointer-events-none overflow-hidden"></div>
+
+        <!-- Text Overlay -->
+        <!-- Responsive Text: Top aligned on mobile, centered left on desktop -->
+        <div id="hero-text" class="absolute z-30 px-4 md:px-margin-edge w-full top-[15%] md:top-1/2 md:-translate-y-1/2 flex flex-col items-center md:items-start text-center md:text-left transition-all duration-700 max-w-container-max mx-auto left-0 right-0">
+            <h1 class="font-h1-display text-[4rem] sm:text-[5.5rem] md:text-[90px] lg:text-[130px] text-white mb-2 md:mb-4 uppercase tracking-tighter drop-shadow-[0_0_30px_rgba(230,0,0,0.8)] leading-[0.95] md:leading-[0.9] w-full md:w-2/3 lg:w-1/2">
+                UNLEASH<br class="hidden md:block"/>
+                <span class="inline-block md:hidden text-[0.8em] tracking-tight"> THE </span>
+                <span class="hidden md:inline-block">THE </span>
+                <span class="text-primary-container inline-block hover:scale-105 transition-transform duration-300">SURGE</span>
+            </h1>
+            <div class="inline-block relative mt-2 md:mt-4">
+                <div class="absolute inset-0 bg-primary-container blur-md opacity-30"></div>
+                <div class="absolute left-0 top-0 w-1 h-full bg-primary-container shadow-[0_0_10px_#E60000] hidden md:block"></div>
+                <p class="relative font-label-caps md:font-h3-subhead text-[10px] sm:text-[12px] md:text-[16px] text-white uppercase tracking-[0.2em] md:tracking-[0.4em] bg-white/5 px-4 md:px-8 py-2 md:py-3 border border-white/10 backdrop-blur-md">
+                    Berry Blast Energy Formula
+                </p>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center">
+             <div class="w-[1px] h-8 md:h-12 bg-white/20 relative overflow-hidden mb-2 md:mb-3">
+                 <div class="absolute top-0 w-full h-1/3 bg-primary-container shadow-[0_0_8px_#E60000] animate-[scroll-down_2s_ease-in-out_infinite]"></div>
+             </div>
+             <span class="font-label-caps text-white/50 tracking-[0.3em] text-[8px] md:text-[9px] uppercase">INITIATE PROTOCOL</span>
+        </div>
+    </div>
+</section>
+
+<!-- Product Showcase -->
+<section id="specs" class="py-16 md:py-24 px-4 md:px-margin-edge bg-surface-container-lowest relative z-40">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div class="relative group mx-4 md:mx-0">
+            <div class="l-bracket-tl"></div>
+            <div class="l-bracket-br"></div>
+            <img class="w-full h-[300px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-105 filter drop-shadow-[0_0_30px_rgba(230,0,0,0.2)]" data-alt="A detailed 3D product render of a STING Berry Blast energy drink can with a matte metallic black finish and glowing red typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR36DWG63R6c8ufPSkogdrEE8Mp5__wI5d_q4ig_FDaxE8rcyukC68fdpRDrRoazj7O7i2f8Lf3QJmhXfYa9KeLNcfN9VE33Ma4HNYJDDkXFA9T3mc6QxZm6eP9tG1rOpnXHgxajZP3ICWbya-gABH2hfgRQE1j55LbN70TjLo-a8qoSjtAQsciEZuAEUyzerCfZETw3Ukn7vlveaGKezHXSaCcERin0IHlA3VfLAhdU9E359fXPL_KQ182sEHh9fcFf61AdqXoOM"/>
+        </div>
+        <div class="px-2 md:px-0">
+            <h2 class="font-h2-headline text-[32px] md:text-h2-headline mb-6 md:mb-8 uppercase text-center md:text-left"><span class="text-primary-container red-glow">BERRY BLAST</span> SPECS</h2>
+            <div class="space-y-6 md:space-y-8">
+                <div class="glass-panel p-5 md:p-6 border-l-4 border-l-primary-container hover:bg-white/5 transition-colors">
+                    <div class="font-label-caps text-label-caps text-primary-container mb-2 tracking-widest drop-shadow-[0_0_5px_#E60000]">NEURAL ACCELERATION</div>
+                    <p class="font-body-md text-[14px] md:text-base text-on-surface">Alpha-GPC driven focus to decrease reaction latency by 24% in high-stakes environments.</p>
+                </div>
+                <div class="glass-panel p-5 md:p-6 border-l-4 border-l-primary-container hover:bg-white/5 transition-colors">
+                    <div class="font-label-caps text-label-caps text-primary-container mb-2 tracking-widest drop-shadow-[0_0_5px_#E60000]">ENDURANCE PROTOCOL</div>
+                    <p class="font-body-md text-[14px] md:text-base text-on-surface">Citrulline Malate optimized for sustained stamina during 12+ hour gaming sessions.</p>
+                </div>
+                <div class="glass-panel p-5 md:p-6 border-l-4 border-l-primary-container hover:bg-white/5 transition-colors">
+                    <div class="font-label-caps text-label-caps text-primary-container mb-2 tracking-widest drop-shadow-[0_0_5px_#E60000]">ZERO JITTER MATRIX</div>
+                    <p class="font-body-md text-[14px] md:text-base text-on-surface">Balanced caffeine delivery with L-Theanine to ensure rock-steady aim and focus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formula Visualization -->
+<section id="formula" class="py-16 md:py-24 bg-surface relative overflow-hidden z-40">
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div class="grid grid-cols-6 md:grid-cols-12 h-full w-full">
+            <div class="border-r border-white h-full"></div><div class="border-r border-white h-full"></div>
+            <div class="border-r border-white h-full"></div><div class="border-r border-white h-full"></div>
+            <div class="border-r border-white h-full"></div><div class="border-r border-white h-full hidden md:block"></div>
+            <div class="border-r border-white h-full hidden md:block"></div><div class="border-r border-white h-full hidden md:block"></div>
+            <div class="border-r border-white h-full hidden md:block"></div><div class="border-r border-white h-full hidden md:block"></div>
+            <div class="border-r border-white h-full hidden md:block"></div><div class="border-r border-white h-full hidden md:block"></div>
+        </div>
+    </div>
+    <div class="max-w-container-max mx-auto px-4 md:px-margin-edge text-center mb-10 md:mb-16 relative z-10">
+        <h2 class="font-h2-headline text-[32px] md:text-h2-headline uppercase mb-4">ENERGY <span class="text-primary-container drop-shadow-[0_0_15px_#E60000]">FORMULA</span></h2>
+        <div class="energy-line mx-auto max-w-xs shadow-[0_0_10px_#E60000]"></div>
+    </div>
+    <div class="max-w-container-max mx-auto px-4 md:px-margin-edge grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 relative z-10">
+        <div class="glass-panel p-8 md:p-10 relative hover:-translate-y-2 transition-transform duration-300 hover:shadow-[0_10px_30px_rgba(230,0,0,0.15)] group">
+            <div class="l-bracket-tl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary-container text-4xl md:text-5xl mb-4 md:mb-6 drop-shadow-[0_0_10px_#E60000]">psychology</span>
+                <h3 class="font-h3-subhead text-xl md:text-h3-subhead uppercase mb-2 md:mb-4">Cognitive Flow</h3>
+                <div class="text-[32px] md:text-h2-headline font-h2-headline text-white mb-4">+32%</div>
+                <div class="h-1 bg-white/10 w-full mb-4 md:mb-6 overflow-hidden">
+                    <div class="h-full bg-primary-container w-[82%] shadow-[0_0_10px_#E60000]"></div>
+                </div>
+                <p class="font-body-md text-[14px] md:text-base text-on-surface-variant">Enhanced synaptical firing rates for instant decision making in tactical scenarios.</p>
+            </div>
+        </div>
+        <div class="glass-panel p-8 md:p-10 relative hover:-translate-y-2 transition-transform duration-300 hover:shadow-[0_10px_30px_rgba(230,0,0,0.15)] group">
+            <div class="l-bracket-tl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary-container text-4xl md:text-5xl mb-4 md:mb-6 drop-shadow-[0_0_10px_#E60000]">bolt</span>
+                <h3 class="font-h3-subhead text-xl md:text-h3-subhead uppercase mb-2 md:mb-4">Response Time</h3>
+                <div class="text-[32px] md:text-h2-headline font-h2-headline text-white mb-4">-18ms</div>
+                <div class="h-1 bg-white/10 w-full mb-4 md:mb-6 overflow-hidden">
+                    <div class="h-full bg-primary-container w-[95%] shadow-[0_0_10px_#E60000]"></div>
+                </div>
+                <p class="font-body-md text-[14px] md:text-base text-on-surface-variant">Latency reduction in motor-neural response pathways. Absolute flick shot precision.</p>
+            </div>
+        </div>
+        <div class="glass-panel p-8 md:p-10 relative hover:-translate-y-2 transition-transform duration-300 hover:shadow-[0_10px_30px_rgba(230,0,0,0.15)] group">
+            <div class="l-bracket-tl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary-container text-4xl md:text-5xl mb-4 md:mb-6 drop-shadow-[0_0_10px_#E60000]">battery_charging_full</span>
+                <h3 class="font-h3-subhead text-xl md:text-h3-subhead uppercase mb-2 md:mb-4">Cellular Fuel</h3>
+                <div class="text-[32px] md:text-h2-headline font-h2-headline text-white mb-4">12H+</div>
+                <div class="h-1 bg-white/10 w-full mb-4 md:mb-6 overflow-hidden">
+                    <div class="h-full bg-primary-container w-[70%] shadow-[0_0_10px_#E60000]"></div>
+                </div>
+                <p class="font-body-md text-[14px] md:text-base text-on-surface-variant">ATP regeneration optimization for sustained physical and mental performance levels.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Grid -->
+<section class="py-16 md:py-24 px-4 md:px-margin-edge bg-surface-container-lowest relative z-40">
+    <div class="max-w-container-max mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-1 border border-white/10">
+            <div class="glass-panel p-6 md:p-12 text-center border-none hover:bg-primary-container/10 transition-colors">
+                <span class="material-symbols-outlined text-primary-container text-3xl md:text-4xl mb-3 md:mb-4 drop-shadow-[0_0_10px_#E60000]">verified</span>
+                <div class="font-label-caps text-[10px] md:text-[12px] uppercase text-white mb-2 tracking-widest">0% SUGAR</div>
+                <p class="text-[10px] md:text-[12px] text-on-surface-variant opacity-70">Clean energy with zero crash architecture.</p>
+            </div>
+            <div class="glass-panel p-6 md:p-12 text-center border-none hover:bg-primary-container/10 transition-colors">
+                <span class="material-symbols-outlined text-primary-container text-3xl md:text-4xl mb-3 md:mb-4 drop-shadow-[0_0_10px_#E60000]">science</span>
+                <div class="font-label-caps text-[10px] md:text-[12px] uppercase text-white mb-2 tracking-widest">BIO-AVAILABLE</div>
+                <p class="text-[10px] md:text-[12px] text-on-surface-variant opacity-70">Rapid absorption through nano-particle tech.</p>
+            </div>
+            <div class="glass-panel p-6 md:p-12 text-center border-none hover:bg-primary-container/10 transition-colors">
+                <span class="material-symbols-outlined text-primary-container text-3xl md:text-4xl mb-3 md:mb-4 drop-shadow-[0_0_10px_#E60000]">public</span>
+                <div class="font-label-caps text-[10px] md:text-[12px] uppercase text-white mb-2 tracking-widest">GLOBAL NODES</div>
+                <p class="text-[10px] md:text-[12px] text-on-surface-variant opacity-70">Sourced from elite chemical suppliers worldwide.</p>
+            </div>
+            <div class="glass-panel p-6 md:p-12 text-center border-none hover:bg-primary-container/10 transition-colors">
+                <span class="material-symbols-outlined text-primary-container text-3xl md:text-4xl mb-3 md:mb-4 drop-shadow-[0_0_10px_#E60000]">sports_esports</span>
+                <div class="font-label-caps text-[10px] md:text-[12px] uppercase text-white mb-2 tracking-widest">PRO APPROVED</div>
+                <p class="text-[10px] md:text-[12px] text-on-surface-variant opacity-70">The official fuel of the Global Esports League.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Esports Lifestyle -->
+<section id="lifestyle" class="py-16 md:py-24 relative z-40">
+    <div class="absolute inset-0">
+        <img class="w-full h-full object-cover opacity-20 grayscale mix-blend-screen" data-alt="Gaming arena" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4ML94NQczL_gCq4jPTEaZjzRPUMe0N6_X8wogWqYcxOWEUAvov9HiG03gtZdlKP3sZ1QY3rWxsR6tLrMmCzW8TzDtr6QzizPsuyAPhDETKOLStVqi3aqKZweR8i-7-aIAC2K4sgmerf8wGHjhwjBwpRpqhd77yw3HtIRqEt_NtggT-You8yTud1bFOnxwItR2DhJb0YTV2YBqnZj4EEHE59WdRpqDmY9u-DtmMsh3w_wPym046fuXy-rBJ0WiOQX6jW90B2r0Z7c"/>
+        <div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest via-transparent to-surface-container-low"></div>
+    </div>
+    <div class="relative z-10 max-w-container-max mx-auto px-4 md:px-margin-edge">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6 md:gap-8">
+            <div class="max-w-2xl">
+                <h2 class="font-h2-headline text-[32px] md:text-h2-headline uppercase mb-4 md:mb-6 leading-tight">DOMINate THE <span class="text-primary-container drop-shadow-[0_0_15px_#E60000]">GRID</span></h2>
+                <p class="font-body-lg text-[14px] md:text-body-lg text-white/80">Join the elite. STING is more than an energy drink; it's a protocol for those who live on the digital edge. Partnering with the Global Esports League to redefine professional performance.</p>
+            </div>
+            <button class="clip-path-button bg-white text-black px-8 py-3 md:px-10 md:py-4 font-label-caps text-label-caps font-bold hover:bg-primary-container hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_15px_#E60000]">JOIN THE LEAGUE</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div class="glass-panel p-6 md:p-8 relative hover:bg-white/5 transition-colors border-t border-white/10">
+                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-primary-container shrink-0 shadow-[0_0_15px_#E60000]">
+                        <img class="w-full h-full object-cover" data-alt="Gamer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEsDq2xHAmVRdmBdES9qeZpPVYIzBzu5BT-iBEQgcp6enXv2M1aUOMnjKFv0MDzxsgNNaSJ5THPmmvD_IY2Xt4F-P1vMyNFA5hLCVbFlgiTTS8ANpnxyaKB_Yrl0hx5OtQWQQP_zLKTTfMIm5Ezwfs99BdesDDvgznVLSzhZvhIrda7AMrrvgkZv7nmbFPjHpqfbIqIM_q1X73ShxDjCPHBq7jB4FngFD6YVXAn971inChLc1K7zVc69_ia2JEkaxlrB3oVrgXpFs"/>
+                    </div>
+                    <div>
+                        <div class="font-label-caps text-label-caps text-primary-container mb-2 tracking-widest">FIELD REPORT // XENON_ZERO</div>
+                        <div class="text-lg md:text-h3-subhead font-h3-subhead text-white mb-4 italic">"Sting is the only thing that keeps my target tracking smooth during 14-hour scrims. It's liquid overclocking."</div>
+                        <div class="text-[10px] md:text-[12px] text-on-surface-variant uppercase tracking-widest opacity-70">Apex Predator // Team Syndicate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-panel p-6 md:p-8 relative hover:bg-white/5 transition-colors border-t border-white/10">
+                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-primary-container shrink-0 shadow-[0_0_15px_#E60000]">
+                        <img class="w-full h-full object-cover" data-alt="Gamer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9yqjUaAqTRLvFKQlUbqKSfgqU99dcyVUMGCkvrt-YoHthyJAO_47ZOIo8LCdcMM2NIlgDNYge7SZLsciZoOiHV24rJxJQWUJacWroM414tj89oqEnLckSZi7yHrDVUBuFDJXehTQP71Fz8t8_3IK-Oz7CpsUh3_q5bUwZjq6E-2bpdpYNwmOOD1DjD-83dR05ccpk9TbSyEFbfJSMoNjYr9gNZyvNfrKoHGzHAR4FhsPm6TNBmoBVxajSjvA9vEKOd5yj9fQP0PA"/>
+                    </div>
+                    <div>
+                        <div class="font-label-caps text-label-caps text-primary-container mb-2 tracking-widest">FIELD REPORT // LUNA_LYRIC</div>
+                        <div class="text-lg md:text-h3-subhead font-h3-subhead text-white mb-4 italic">"The mental clarity is unmatched. No brain fog, just pure objective-focused adrenaline. Absolute game changer."</div>
+                        <div class="text-[10px] md:text-[12px] text-on-surface-variant uppercase tracking-widest opacity-70">Grandmaster // Neon Knights</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Buy Now CTA Section -->
+<section class="py-16 md:py-24 bg-surface-container-low px-4 md:px-margin-edge z-40 relative">
+    <div class="max-w-container-max mx-auto text-center mb-10 md:mb-16">
+        <h2 class="font-h2-headline text-[32px] md:text-h2-headline uppercase mb-4">READY TO <span class="text-primary-container drop-shadow-[0_0_15px_#E60000]">CONNECT?</span></h2>
+        <p class="font-body-md text-[14px] md:text-base text-on-surface-variant max-w-md mx-auto">Select your deployment volume. Automatic shipping available for recurring ops.</p>
+    </div>
+    <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-4 md:pt-8">
+        <!-- 12 Pack -->
+        <div class="glass-panel p-8 md:p-10 flex flex-col items-center hover:-translate-y-2 md:hover:-translate-y-4 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(230,0,0,0.1)]">
+            <div class="font-label-caps text-label-caps text-white/50 mb-4 md:mb-6 uppercase tracking-widest">SCOUT PACK</div>
+            <div class="text-[48px] md:text-[64px] font-h1-display text-white mb-2 leading-none">12 <span class="text-xl md:text-h3-subhead opacity-50">UNITS</span></div>
+            <div class="text-primary-container font-h3-subhead mb-6 md:mb-8 drop-shadow-[0_0_5px_#E60000]">$29.99</div>
+            <ul class="space-y-3 md:space-y-4 mb-8 md:mb-10 text-[12px] md:text-[14px] text-white/70 uppercase tracking-wide text-center">
+                <li>- Berry Blast Core</li>
+                <li>- 1x System Advantage</li>
+                <li>- Standard Shipping</li>
+            </ul>
+            <button class="w-full border border-white/20 py-3 md:py-4 font-label-caps text-label-caps hover:bg-white hover:text-black transition-all">SELECT PACK</button>
+        </div>
+        <!-- 24 Pack (Featured) -->
+        <div class="glass-panel p-8 md:p-10 flex flex-col items-center border border-primary-container/50 bg-primary-container/5 transform md:scale-110 z-10 relative hover:-translate-y-2 md:hover:-translate-y-4 transition-all duration-500 shadow-[0_0_30px_rgba(230,0,0,0.2)]">
+            <div class="absolute -top-4 bg-primary-container px-4 py-1 font-label-caps text-[10px] md:text-label-caps text-white shadow-[0_0_15px_#E60000]">RECOMMENDED DEPLOYMENT</div>
+            <div class="font-label-caps text-label-caps text-primary-container mb-4 md:mb-6 uppercase tracking-widest drop-shadow-[0_0_5px_#E60000]">RAID PACK</div>
+            <div class="text-[56px] md:text-[72px] font-h1-display text-white mb-2 leading-none drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">24 <span class="text-xl md:text-h3-subhead opacity-50">UNITS</span></div>
+            <div class="text-primary-container font-h3-subhead mb-6 md:mb-8 drop-shadow-[0_0_10px_#E60000]">$54.99</div>
+            <ul class="space-y-3 md:space-y-4 mb-8 md:mb-10 text-[12px] md:text-[14px] text-white uppercase tracking-wide text-center">
+                <li>- Multi-Flavor Access</li>
+                <li>- 2x System Advantage</li>
+                <li>- Priority Shipping</li>
+                <li>- League Badge</li>
+            </ul>
+            <button class="w-full bg-primary-container py-3 md:py-4 font-label-caps text-label-caps text-white hover:bg-red-600 transition-all hover:shadow-[0_0_20px_#E60000]">DEPLOY NOW</button>
+        </div>
+        <!-- 48 Pack -->
+        <div class="glass-panel p-8 md:p-10 flex flex-col items-center hover:-translate-y-2 md:hover:-translate-y-4 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(230,0,0,0.1)]">
+            <div class="font-label-caps text-label-caps text-white/50 mb-4 md:mb-6 uppercase tracking-widest">GARRISON PACK</div>
+            <div class="text-[48px] md:text-[64px] font-h1-display text-white mb-2 leading-none">48 <span class="text-xl md:text-h3-subhead opacity-50">UNITS</span></div>
+            <div class="text-primary-container font-h3-subhead mb-6 md:mb-8 drop-shadow-[0_0_5px_#E60000]">$99.99</div>
+            <ul class="space-y-3 md:space-y-4 mb-8 md:mb-10 text-[12px] md:text-[14px] text-white/70 uppercase tracking-wide text-center">
+                <li>- Full System Restock</li>
+                <li>- All Advantage Tags</li>
+                <li>- Hyper-Lane Shipping</li>
+                <li>- Limited Edition Shaker</li>
+            </ul>
+            <button class="w-full border border-white/20 py-3 md:py-4 font-label-caps text-label-caps hover:bg-white hover:text-black transition-all">SELECT PACK</button>
+        </div>
+    </div>
+</section>
+
+<!-- Sector Map -->
+<section class="py-16 md:py-24 px-4 md:px-margin-edge bg-surface z-40 relative">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div class="order-2 lg:order-1">
+            <h2 class="font-h2-headline text-[32px] md:text-h2-headline uppercase mb-6 md:mb-8 text-center md:text-left">LOCATE <span class="text-primary-container drop-shadow-[0_0_15px_#E60000]">SECTOR</span></h2>
+            <p class="font-body-lg text-[14px] md:text-body-lg text-on-surface-variant mb-8 md:mb-10 text-center md:text-left">Find STING replenishment nodes in your physical coordinates. Over 50,000 retail access points worldwide.</p>
+            <div class="relative mb-6 md:mb-8">
+                <input class="w-full bg-transparent border-b border-outline-variant py-3 md:py-4 font-label-caps text-[10px] md:text-label-caps text-white focus:outline-none focus:border-primary-container transition-all" placeholder="ENTER ZIP/COORDS" type="text"/>
+                <button class="absolute right-0 bottom-3 md:bottom-4 text-primary-container material-symbols-outlined hover:text-white transition-colors">near_me</button>
+            </div>
+            <div class="space-y-3 md:space-y-4">
+                <div class="flex justify-between items-center p-3 md:p-4 border border-white/5 hover:border-primary-container/50 transition-all cursor-pointer group bg-white/5">
+                    <span class="font-label-caps text-[10px] md:text-label-caps text-white group-hover:text-primary-container transition-colors">NEON-MART DOWNTOWN</span>
+                    <span class="text-[10px] md:text-[12px] text-on-surface-variant">0.4 MI</span>
+                </div>
+                <div class="flex justify-between items-center p-3 md:p-4 border border-white/5 hover:border-primary-container/50 transition-all cursor-pointer group bg-white/5">
+                    <span class="font-label-caps text-[10px] md:text-label-caps text-white group-hover:text-primary-container transition-colors">GRIDRUNNER FUEL STOP</span>
+                    <span class="text-[10px] md:text-[12px] text-on-surface-variant">1.2 MI</span>
+                </div>
+            </div>
+        </div>
+        <div class="order-1 lg:order-2 h-[300px] md:h-[500px] glass-panel relative overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(230,0,0,0.1)]">
+            <img class="w-full h-full object-cover grayscale brightness-50 contrast-125" data-alt="Cyberpunk Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCfyM2hBEELrSKu02oebOxrDnBn-rf0v-Jm5vMHP3EwEvy0O9JLD6iBnTit3ykIssHv3k0Q0w0SOYlhPnXMF6s8uR1fLPsxYeqPQTI55_vWTFtrh2lR3JWQWSSFR2WPRC13uhMsi0SEKUpTjw6OQawKsJXZxntAhFKWYCGO2rppcGnRxKhRiFFP_SRPL4gqN3Bdd3iRh85QN4Xbn0wVlZKKCHpJTI_Iekf3DXj7X9l8n02kZf-6G8ZarjXE4LSA0I4fPdkw4z-g4s"/>
+            <div class="absolute inset-0 bg-primary-container/5 pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div class="w-4 h-4 md:w-6 md:h-6 bg-primary-container rounded-full red-glow animate-pulse shadow-[0_0_20px_#E60000]"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Eye-Catching Futuristic Footer -->
+<footer class="bg-surface-container-lowest pt-20 md:pt-32 pb-8 md:pb-12 relative z-40 overflow-hidden border-t border-white/10">
+    <!-- Huge background text -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-full text-center overflow-hidden pointer-events-none opacity-[0.02] select-none">
+        <span class="font-h1-display text-[28vw] md:text-[20vw] font-black text-white whitespace-nowrap leading-none tracking-tighter">STING</span>
+    </div>
+    
+    <div class="relative z-10 px-6 md:px-margin-edge w-full max-w-container-max mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-12 md:mb-20 border-b border-white/10 pb-12 md:pb-16">
+            <!-- Brand Column -->
+            <div class="md:col-span-5 text-center md:text-left">
+                <div class="font-h2-headline text-2xl md:text-3xl text-white mb-4 md:mb-6 flex items-center justify-center md:justify-start gap-3">
+                    STING <span class="w-2 h-2 md:w-3 md:h-3 bg-primary-container rounded-full shadow-[0_0_10px_#E60000] animate-pulse"></span>
+                </div>
+                <p class="font-body-md text-[14px] md:text-base text-white/50 max-w-sm mx-auto md:mx-0 mb-6 md:mb-8 leading-relaxed">
+                    Hyper-precision neuro-stimulants engineered for elite Gridrunners. Zero lag. Zero sugar. Maximum cognitive synchronization.
+                </p>
+                <!-- Social Links -->
+                <div class="flex items-center justify-center md:justify-start space-x-4">
+                    <a class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary-container hover:border-primary-container hover:text-white transition-all hover:shadow-[0_0_20px_rgba(230,0,0,0.5)] group bg-white/5" href="#">
+                        <span class="material-symbols-outlined text-[18px] md:text-[20px] text-white/70 group-hover:text-white">language</span>
+                    </a>
+                    <a class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary-container hover:border-primary-container hover:text-white transition-all hover:shadow-[0_0_20px_rgba(230,0,0,0.5)] group bg-white/5" href="#">
+                        <span class="material-symbols-outlined text-[18px] md:text-[20px] text-white/70 group-hover:text-white">forum</span>
+                    </a>
+                    <a class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary-container hover:border-primary-container hover:text-white transition-all hover:shadow-[0_0_20px_rgba(230,0,0,0.5)] group bg-white/5" href="#">
+                        <span class="material-symbols-outlined text-[18px] md:text-[20px] text-white/70 group-hover:text-white">play_arrow</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="md:col-span-3 text-center md:text-left">
+                <h4 class="font-label-caps text-[12px] md:text-[14px] text-white tracking-widest mb-4 md:mb-6 md:border-l-2 md:border-primary-container md:pl-3">SYSTEM PROTOCOLS</h4>
+                <ul class="space-y-3 md:space-y-4 font-label-caps text-[10px] md:text-[12px] text-white/50 tracking-wider">
+                    <li><a href="#" class="hover:text-primary-container transition-colors flex items-center justify-center md:justify-start gap-2"><span class="material-symbols-outlined text-[14px] hidden md:block">chevron_right</span> Transmission Logs</a></li>
+                    <li><a href="#" class="hover:text-primary-container transition-colors flex items-center justify-center md:justify-start gap-2"><span class="material-symbols-outlined text-[14px] hidden md:block">chevron_right</span> Supply Nodes</a></li>
+                    <li><a href="#" class="hover:text-primary-container transition-colors flex items-center justify-center md:justify-start gap-2"><span class="material-symbols-outlined text-[14px] hidden md:block">chevron_right</span> Performance Data</a></li>
+                    <li><a href="#" class="hover:text-primary-container transition-colors flex items-center justify-center md:justify-start gap-2"><span class="material-symbols-outlined text-[14px] hidden md:block">chevron_right</span> Support Uplink</a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter / Sub -->
+            <div class="md:col-span-4 text-center md:text-left">
+                <h4 class="font-label-caps text-[12px] md:text-[14px] text-white tracking-widest mb-4 md:mb-6 md:border-l-2 md:border-primary-container md:pl-3">INITIALIZE COMMS</h4>
+                <p class="font-body-md text-white/50 mb-4 md:mb-6 text-[12px] md:text-sm">Sign up for encrypted transmissions containing exclusive drops and intel.</p>
+                <div class="relative flex flex-col sm:flex-row shadow-[0_0_20px_rgba(230,0,0,0.1)] focus-within:shadow-[0_0_30px_rgba(230,0,0,0.3)] transition-shadow">
+                    <input type="email" placeholder="ENTER COMM-LINK (EMAIL)" class="w-full bg-white/5 border border-white/10 sm:border-r-0 px-4 py-3 md:py-4 font-label-caps text-[10px] md:text-[12px] text-white focus:outline-none focus:border-primary-container focus:bg-white/10 transition-colors mb-2 sm:mb-0">
+                    <button class="bg-primary-container px-6 py-3 md:py-0 flex items-center justify-center hover:bg-red-600 transition-colors border border-primary-container">
+                        <span class="material-symbols-outlined text-white">send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Footer -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-label-caps text-[8px] md:text-[10px] text-white/30 tracking-[0.2em] order-3 md:order-1 text-center md:text-left w-full md:w-auto">
+                © 2024 STING ENERGY PROTOCOL. ALL LOGS ARCHIVED.
+            </div>
+            <div class="font-label-caps text-[8px] md:text-[10px] text-primary-container tracking-[0.2em] md:tracking-[0.4em] flex items-center gap-2 bg-primary-container/10 px-4 py-2 md:px-6 md:py-2 rounded-full border border-primary-container/30 shadow-[0_0_15px_rgba(230,0,0,0.2)] order-1 md:order-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+                SYSTEM.STATUS.OPTIMAL
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6 font-label-caps text-[8px] md:text-[10px] text-white/30 tracking-[0.2em] order-2 md:order-3">
+                <a href="#" class="hover:text-white transition-colors">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white transition-colors">TERMS OF SERVICE</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
